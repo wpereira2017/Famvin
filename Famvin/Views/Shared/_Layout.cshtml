@@ -1,40 +1,73 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - VFO Latin America</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world-highres.js"></script>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href='@Url.Action("Index", "Home", new { @class = "navbar-brand" })'>
+            <img src="~/img/Logo_Famvin.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            Famvin
+        </a>
+        @*@Html.ActionLink("Logo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Setup
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @Html.ActionLink("Branch", "Index", "Branches", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Council", "Index", "Councils", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Country", "Index", "Countries", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Member", "Index", "Members", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Occupation", "Index", "Occupations", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Position", "Index", "Positions", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Region", "Index", "Regions", null, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+            </ul>
+            @*<span class="navbar-text"></span>*@
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+
+    <header class="jumbotron" style="padding: 32px 32px 0px 32px">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div class="row row-header">
+                <div class="col-12 col-sm-8">
+                    <h1>Famvin</h1>
+                    <p>La Familia Vicenciana es un movimiento formado por más de 160 instituciones y cerca de 4.000.000 miembros, que hoy día siguen a Jesucristo sirviendo a los pobres, a ejemplo de San Vicente de Paúl, Santa Luisa de Marillac y muchos otros creyentes que, a lo largo de los últimos 4 siglos, han enriquecido el carisma vicenciano.</p>
+                </div>
+                <div class="col-12 col-sm-4" style="margin-bottom: 20px;">
+                    <img src="~/img/LogoFamvin.png" class="img-fluid" height="240" width="320">
+                </div>
             </div>
         </div>
-    </div>
+    </header>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Comisión de Información de la Familia Vicenciana</p>
         </footer>
     </div>
 

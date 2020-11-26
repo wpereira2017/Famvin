@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Famvin.Models.Occupation>
+
+@{
+    ViewBag.Title = "Occupation List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Occupations</h2>
+
+<p class="text-right">
+    @Html.ActionLink("New Occupation", "Create", null, new { @class = "btn btn-primary btn-large" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.IdOccupation }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
+                @Html.ActionLink(" ", "Details", new { id = item.IdOccupation }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
+                @Html.ActionLink(" ", "Delete", new { id = item.IdOccupation }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
+            </td>
+        </tr>
+    }
+
+</table>

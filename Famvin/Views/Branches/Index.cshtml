@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Famvin.Models.Branch>
+
+@{
+    ViewBag.Title = "Branch List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Branches</h2>
+<p class="text-right">
+    @Html.ActionLink("New Branch", "Create", null, new { @class = "btn btn-primary btn-large" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Code)</th>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Code)</td>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.IdBranch }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
+                @Html.ActionLink(" ", "Details", new { id = item.IdBranch }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
+                @Html.ActionLink(" ", "Delete", new { id = item.IdBranch }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
+            </td>
+        </tr>
+    }
+
+</table>
