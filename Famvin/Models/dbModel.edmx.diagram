@@ -11,12 +11,11 @@
         <EntityTypeShape EntityType="FamVinModel.Member" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FamVinModel.Occupation" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="FamVinModel.Position" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FamVinModel.Region" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FamVinModel.Region" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="FamVinModel.FK_Member_Branch" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Council_Region" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Member_Council" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Country_Region" ManuallyRouted="false" />
-        <AssociationConnector Association="FamVinModel.FK_Member_Member" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Member_Occupation" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Member_Position" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Member_Region" ManuallyRouted="false" />

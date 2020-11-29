@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FamVinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FamVinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="IdBranch" />
@@ -113,18 +113,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Member_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="Member1" Type="Self.Member" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="IdMember" />
-            </Principal>
-            <Dependent Role="Member1">
-              <PropertyRef Name="IdMember" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Member_Occupation">
           <End Role="Occupation" Type="Self.Occupation" Multiplicity="1" />
           <End Role="Member" Type="Self.Member" Multiplicity="*" />
@@ -185,10 +173,6 @@
             <End Role="Council" EntitySet="Council" />
             <End Role="Member" EntitySet="Member" />
           </AssociationSet>
-          <AssociationSet Name="FK_Member_Member" Association="Self.FK_Member_Member">
-            <End Role="Member" EntitySet="Member" />
-            <End Role="Member1" EntitySet="Member" />
-          </AssociationSet>
           <AssociationSet Name="FK_Member_Occupation" Association="Self.FK_Member_Occupation">
             <End Role="Occupation" EntitySet="Occupation" />
             <End Role="Member" EntitySet="Member" />
@@ -202,8 +186,7 @@
             <End Role="Member" EntitySet="Member" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FamVinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -251,8 +234,6 @@
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Branch" Relationship="Self.FK_Member_Branch" FromRole="Member" ToRole="Branch" />
           <NavigationProperty Name="Council" Relationship="Self.FK_Member_Council" FromRole="Member" ToRole="Council" />
-          <NavigationProperty Name="Member1" Relationship="Self.FK_Member_Member" FromRole="Member" ToRole="Member1" />
-          <NavigationProperty Name="Member2" Relationship="Self.FK_Member_Member" FromRole="Member1" ToRole="Member" />
           <NavigationProperty Name="Occupation" Relationship="Self.FK_Member_Occupation" FromRole="Member" ToRole="Occupation" />
           <NavigationProperty Name="Position" Relationship="Self.FK_Member_Position" FromRole="Member" ToRole="Position" />
           <NavigationProperty Name="Region" Relationship="Self.FK_Member_Region" FromRole="Member" ToRole="Region" />
@@ -331,18 +312,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Member_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="1" />
-          <End Role="Member1" Type="Self.Member" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="IdMember" />
-            </Principal>
-            <Dependent Role="Member1">
-              <PropertyRef Name="IdMember" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Member_Occupation">
           <End Role="Occupation" Type="Self.Occupation" Multiplicity="1" />
           <End Role="Member" Type="Self.Member" Multiplicity="*" />
@@ -402,10 +371,6 @@
           <AssociationSet Name="FK_Country_Region" Association="Self.FK_Country_Region">
             <End Role="Region" EntitySet="Region" />
             <End Role="Country" EntitySet="Country" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Member_Member" Association="Self.FK_Member_Member">
-            <End Role="Member" EntitySet="Member" />
-            <End Role="Member1" EntitySet="Member" />
           </AssociationSet>
           <AssociationSet Name="FK_Member_Occupation" Association="Self.FK_Member_Occupation">
             <End Role="Occupation" EntitySet="Occupation" />

@@ -10,16 +10,18 @@
 
     <script src="https://code.highcharts.com/maps/highmaps.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/mapdata/custom/world-highres.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/north-america.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/south-america.js"></script>
 
 </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href='@Url.Action("Index", "Home", new { @class = "navbar-brand" })'>
+        <a class="navbar-brand" href="#">Famvin</a>
+        @*<a href='@Url.Action("Index", "Home", new { @class = "navbar-brand" })'>
             <img src="~/img/Logo_Famvin.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
             Famvin
-        </a>
+        </a>*@
         @*@Html.ActionLink("Logo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,6 +31,7 @@
                 <li class="nav-item active">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Distribution", "Distribution", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Setup
@@ -57,7 +60,7 @@
                     <p>La Familia Vicenciana es un movimiento formado por más de 160 instituciones y cerca de 4.000.000 miembros, que hoy día siguen a Jesucristo sirviendo a los pobres, a ejemplo de San Vicente de Paúl, Santa Luisa de Marillac y muchos otros creyentes que, a lo largo de los últimos 4 siglos, han enriquecido el carisma vicenciano.</p>
                 </div>
                 <div class="col-12 col-sm-4" style="margin-bottom: 20px;">
-                    <img src="~/img/LogoFamvin.png" class="img-fluid" height="240" width="320">
+                    <img src="~/img/Logo_Famvin.png" class="img-fluid" height="240" width="320">
                 </div>
             </div>
         </div>

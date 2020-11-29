@@ -14,10 +14,9 @@ namespace Famvin.Controllers
     {
         private FamVinEntities db = new FamVinEntities();
 
-        // GET: Regions
         public ActionResult Index()
         {
-            return View(db.Region.ToList());
+            return View(db.Region.ToList().OrderBy(x => x.Name));
         }
 
         // GET: Regions/Details/5

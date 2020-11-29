@@ -14,10 +14,9 @@ namespace Famvin.Controllers
     {
         private FamVinEntities db = new FamVinEntities();
 
-        // GET: Branches
         public ActionResult Index()
         {
-            return View(db.Branch.ToList());
+            return View(db.Branch.ToList().OrderBy(x => x.Name));
         }
 
         // GET: Branches/Details/5
@@ -35,18 +34,14 @@ namespace Famvin.Controllers
             return View(branch);
         }
 
-        // GET: Branches/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Branches/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdBranch,Code,Name")] Branch branch)
+        public ActionResult Create(Branch branch)
         {
             if (ModelState.IsValid)
             {

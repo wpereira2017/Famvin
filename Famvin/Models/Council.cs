@@ -11,10 +11,10 @@ namespace Famvin.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Council
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Council()
         {
             this.Member = new HashSet<Member>();
@@ -22,10 +22,11 @@ namespace Famvin.Models
     
         public int IdCouncil { get; set; }
         public int IdRegion { get; set; }
+
+        [Display(Name = "Council")]
         public string Name { get; set; }
     
         public virtual Region Region { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Member> Member { get; set; }
     }
 }

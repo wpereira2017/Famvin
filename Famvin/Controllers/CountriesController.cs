@@ -14,11 +14,10 @@ namespace Famvin.Controllers
     {
         private FamVinEntities db = new FamVinEntities();
 
-        // GET: Countries
         public ActionResult Index()
         {
             var country = db.Country.Include(c => c.Region);
-            return View(country.ToList());
+            return View(country.ToList().OrderBy(x => x.Region.Name ).ThenBy( x => x.Name));
         }
 
         // GET: Countries/Details/5

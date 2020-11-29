@@ -14,10 +14,9 @@ namespace Famvin.Controllers
     {
         private FamVinEntities db = new FamVinEntities();
 
-        // GET: Positions
         public ActionResult Index()
         {
-            return View(db.Position.ToList());
+            return View(db.Position.ToList().OrderBy(x => x.Name));
         }
 
         // GET: Positions/Details/5
