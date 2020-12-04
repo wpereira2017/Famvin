@@ -19,7 +19,6 @@ namespace Famvin.Controllers
             return View(db.Position.ToList().OrderBy(x => x.Name));
         }
 
-        // GET: Positions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -34,18 +33,14 @@ namespace Famvin.Controllers
             return View(position);
         }
 
-        // GET: Positions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Positions/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPosition,Name")] Position position)
+        public ActionResult Create(Position position)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +52,6 @@ namespace Famvin.Controllers
             return View(position);
         }
 
-        // GET: Positions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -72,12 +66,9 @@ namespace Famvin.Controllers
             return View(position);
         }
 
-        // POST: Positions/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPosition,Name")] Position position)
+        public ActionResult Edit(Position position)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +79,6 @@ namespace Famvin.Controllers
             return View(position);
         }
 
-        // GET: Positions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -103,7 +93,6 @@ namespace Famvin.Controllers
             return View(position);
         }
 
-        // POST: Positions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -121,6 +110,25 @@ namespace Famvin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult GetPositionMembers()
+        {
+            var totals = from m in db.Member
+                         join p in db.Position on m.IdPosition1 equals p.IdPosition
+                         group m by new
+                         {
+                             p.IdPosition,
+                             p.Name
+                         }
+                         into grouped
+                         select new
+                         {
+                             Position = grouped.Key.Name,
+                             TotalMembers = grouped.Count()
+                         };
+
+            return Json(totals, JsonRequestBehavior.AllowGet);
         }
     }
 }

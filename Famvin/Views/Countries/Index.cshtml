@@ -7,36 +7,98 @@
 
 <h2>Countries</h2>
 
-<p class="text-right">
-    @Html.ActionLink("New Country", "Create", null, new { @class = "btn btn-primary btn-large" })
-</p>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <p class="text-right">
+            @Html.ActionLink("New Country", "Create", null, new { @class = "btn btn-primary btn-large" })
+        </p>
 
-<table class="table">
+        <table class="table">
 
-    @foreach (var group in Model.GroupBy(x => x.Region.Name))
-    {
-        <tr class="group-header">
-            <th width="2%"></th>
-            <th width="68%" class="h4"><i class="fa fa-plus-square-o mr-3"></i>@group.Key</th>
-            <th width="30%">Countries Total: @group.Count()</th>
-        </tr>
+            @foreach (var group in Model.GroupBy(x => x.Region.Name))
+            {
+                <tr class="group-header">
+                    <th width="2%"></th>
+                    <th width="68%" class="h4"><i class="fa fa-plus-square-o mr-3"></i>@group.Key</th>
+                    <th width="30%">Countries Total: @group.Count()</th>
+                </tr>
 
-        foreach (var item in group)
-        {
-            <tr>
-                <td width="2%"></td>
-                <td width="68%">@Html.DisplayFor(modelItem => item.Name)</td>
-                <td width="30%">
-                    @Html.ActionLink(" ", "Edit", new { id = item.IdCountry }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
-                    @Html.ActionLink(" ", "Details", new { id = item.IdCountry }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
-                    @Html.ActionLink(" ", "Delete", new { id = item.IdCountry }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
-                </td>
-            </tr>
-        }
-    }
+                foreach (var item in group)
+                {
+                    <tr>
+                        <td width="2%"></td>
+                        <td width="68%">@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td width="30%">
+                            @Html.ActionLink(" ", "Edit", new { id = item.IdCountry }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
+                            @Html.ActionLink(" ", "Details", new { id = item.IdCountry }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
+                            @Html.ActionLink(" ", "Delete", new { id = item.IdCountry }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
+                        </td>
+                    </tr>
+                }
+            }
 
-</table>
+        </table>
+    </div>
+    <div class="col-12 col-md-6">
+        <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    </div>
+</div>
 
 @section Scripts{
-   <script src="js/scripts.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $.getJSON("/Countries/GetCountryMembers", function (data) {
+
+                var countries = [];
+                var totalxCountry = [];
+
+                for (var i = 0; i < data.length; i++) {
+
+                    countries.push(data[i].Country);
+                    totalxCountry.push({ y: data[i].TotalMembers });
+                }
+
+                Highcharts.chart('container', {
+                    chart: { type: 'area' },
+                    title: { text: 'Members by Country' },
+                    subtitle: { text: '' },
+                    xAxis: { categories: positions },
+                    xAxis: {
+                        categories: countries,
+                        tickmarkPlacement: 'on',
+                        title: { enabled: false }
+                    },
+                    yAxis: {
+                        title: { text: 'Billions' },
+                        labels: {
+                            formatter: function () {
+                                return this.value / 1000;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        split: true,
+                        valueSuffix: ' millions'
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'normal',
+                            lineColor: '#666666',
+                            lineWidth: 1,
+                            marker: {
+                                lineWidth: 1,
+                                lineColor: '#666666'
+                            }
+                        }
+                    },
+                    series: [{ data: totalxCountry }]
+                });
+            });
+
+        });
+    </script>
+
+    <script src="js/scripts.js"></script>
 }

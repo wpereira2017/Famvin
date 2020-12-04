@@ -19,7 +19,6 @@ namespace Famvin.Controllers
             return View(db.Occupation.ToList().OrderBy(x => x.Name));
         }
 
-        // GET: Occupations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -34,18 +33,14 @@ namespace Famvin.Controllers
             return View(occupation);
         }
 
-        // GET: Occupations/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Occupations/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdOccupation,Name")] Occupation occupation)
+        public ActionResult Create(Occupation occupation)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +52,6 @@ namespace Famvin.Controllers
             return View(occupation);
         }
 
-        // GET: Occupations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -72,12 +66,9 @@ namespace Famvin.Controllers
             return View(occupation);
         }
 
-        // POST: Occupations/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdOccupation,Name")] Occupation occupation)
+        public ActionResult Edit(Occupation occupation)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +79,6 @@ namespace Famvin.Controllers
             return View(occupation);
         }
 
-        // GET: Occupations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -103,7 +93,6 @@ namespace Famvin.Controllers
             return View(occupation);
         }
 
-        // POST: Occupations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

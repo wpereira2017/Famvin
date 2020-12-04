@@ -2,25 +2,21 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Occupation</h4>
+    <h4>Occupation details</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
 
     </dl>
+
+    <div class="row mt-5">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IdOccupation }, new { @class = "btn btn-light btn-large mr-2" })
+        @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-primary btn-large" })
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdOccupation }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

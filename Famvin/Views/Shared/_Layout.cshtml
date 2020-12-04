@@ -12,6 +12,7 @@
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/mapdata/custom/north-america.js"></script>
     <script src="https://code.highcharts.com/mapdata/custom/south-america.js"></script>
+    @*<script src="https://code.highcharts.com/highcharts.js"></script>*@
 
 </head>
 <body>
@@ -32,18 +33,20 @@
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Distribution", "Distribution", "Home", null, new { @class = "nav-link" })</li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Setup
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        @Html.ActionLink("Branch", "Index", "Branches", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Council", "Index", "Councils", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Country", "Index", "Countries", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Member", "Index", "Members", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Occupation", "Index", "Occupations", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Position", "Index", "Positions", null, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Region", "Index", "Regions", null, new { @class = "dropdown-item" })
+                <li class="nav-item ">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Setup
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.ActionLink("Branch", "Index", "Branches", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Council", "Index", "Councils", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Country", "Index", "Countries", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Member", "Index", "Members", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Occupation", "Index", "Occupations", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Position", "Index", "Positions", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Region", "Index", "Regions", null, new { @class = "dropdown-item" })
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -57,7 +60,7 @@
             <div class="row row-header">
                 <div class="col-12 col-sm-8">
                     <h1>Famvin</h1>
-                    <p>La Familia Vicenciana es un movimiento formado por más de 160 instituciones y cerca de 4.000.000 miembros, que hoy día siguen a Jesucristo sirviendo a los pobres, a ejemplo de San Vicente de Paúl, Santa Luisa de Marillac y muchos otros creyentes que, a lo largo de los últimos 4 siglos, han enriquecido el carisma vicenciano.</p>
+                    <p>The Vincentian Family is a movement with more than 160 institutions and 4,000,000 members around the world, who follow Jesus Christ serving the poor, following the example of Saint Vincent of Paul, Saint Louise Marillac and many other believers, they have enriched the Vincentian charism through over the last 4 centuries.</p>
                 </div>
                 <div class="col-12 col-sm-4" style="margin-bottom: 20px;">
                     <img src="~/img/Logo_Famvin.png" class="img-fluid" height="240" width="320">

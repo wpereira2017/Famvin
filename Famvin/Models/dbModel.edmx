@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="IdBranch" />
           </Key>
-          <Property Name="IdBranch" Type="int" Nullable="false" />
+          <Property Name="IdBranch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="IdCouncil" />
           </Key>
-          <Property Name="IdCouncil" Type="int" Nullable="false" />
+          <Property Name="IdCouncil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdRegion" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -25,7 +25,7 @@
           <Key>
             <PropertyRef Name="IdCountry" />
           </Key>
-          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="IdCountry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdRegion" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -48,21 +48,21 @@
           <Key>
             <PropertyRef Name="IdOccupation" />
           </Key>
-          <Property Name="IdOccupation" Type="int" Nullable="false" />
+          <Property Name="IdOccupation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
             <PropertyRef Name="IdPosition" />
           </Key>
-          <Property Name="IdPosition" Type="int" Nullable="false" />
+          <Property Name="IdPosition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
             <PropertyRef Name="IdRegion" />
           </Key>
-          <Property Name="IdRegion" Type="int" Nullable="false" />
+          <Property Name="IdRegion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Council_Region">

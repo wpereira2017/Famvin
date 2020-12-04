@@ -20,19 +20,16 @@ namespace Famvin.Controllers
             return View(member.ToList().OrderBy(x => x.Council.Name).ThenBy( x => x.Name));
         }
 
-        // GET: Members/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Members/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Members/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -48,13 +45,11 @@ namespace Famvin.Controllers
             }
         }
 
-        // GET: Members/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Members/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -70,13 +65,11 @@ namespace Famvin.Controllers
             }
         }
 
-        // GET: Members/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Members/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

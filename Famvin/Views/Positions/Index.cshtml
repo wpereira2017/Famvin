@@ -7,26 +7,115 @@
 
 <h2>Positions</h2>
 
-<p class="text-right">
-    @Html.ActionLink("New Position", "Create", null, new { @class = "btn btn-primary btn-large" })
-</p>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <p class="text-right">
+            @Html.ActionLink("New Position", "Create", null, new { @class = "btn btn-primary btn-large" })
+        </p>
 
-<table class="table">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Name)</th>
-        <th></th>
-    </tr>
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-            <td>
-                @Html.ActionLink(" ", "Edit", new { id = item.IdPosition }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
-                @Html.ActionLink(" ", "Details", new { id = item.IdPosition }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
-                @Html.ActionLink(" ", "Delete", new { id = item.IdPosition }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
-            </td>
-        </tr>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.IdPosition }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
+                        @Html.ActionLink(" ", "Details", new { id = item.IdPosition }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.IdPosition }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+    <div class="col-12 col-md-6">
+        <figure class="highcharts-figure">
+            <div id="container1"></div>
+        </figure>
+
+        <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $.getJSON("/Positions/GetPositionMembers", function (data) {
+
+                var final = [];
+                var positions = [];
+                var totalxPosition = [];
+
+                for (var i = 0; i < data.length; i++) {
+
+                    final.push({
+                        name: data[i].Position,
+                        y: data[i].TotalMembers
+                    });
+
+                    positions.push(data[i].Position);
+                    totalxPosition.push({ y: data[i].TotalMembers });
+                }
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    credits: { enabled: false },
+                    title: { text: '<h5>Distribution Members by Positions</h5>' },
+                    tooltip: { pointFormat: '<span>{series.name}: <b>{point.y}</b></span>' },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<span>{point.name}: {point.percentage:.1f} %</span>'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Persons',
+                        colorByPoint: true,
+                        data: final
+                    }]
+                });
+
+                const chart = Highcharts.chart('container1', {
+                    chart: { type: 'column' },
+                    title: { text: '' },
+                    credits: { enabled: false },
+                    xAxis: { categories: positions },
+                    yAxis: {
+                        min: 0,
+                        title: { text: '# Members' }
+                    },
+                    legend: { enabled: false },
+                    plotOptions: {
+                        column: {
+                            allowPointSelect: true,
+                            dataLabels: {
+                                enabled: true,
+                                format: '<span>{point.y}</span>'
+                            }
+                        },
+                        series: { allowPointSelect: true }
+                    },
+                    series: [{ data: totalxPosition }]
+                });
+            });
+        
+        });
+    </script>
+
+}

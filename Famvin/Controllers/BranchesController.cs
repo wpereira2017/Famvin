@@ -19,7 +19,6 @@ namespace Famvin.Controllers
             return View(db.Branch.ToList().OrderBy(x => x.Name));
         }
 
-        // GET: Branches/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -53,7 +52,6 @@ namespace Famvin.Controllers
             return View(branch);
         }
 
-        // GET: Branches/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -68,12 +66,9 @@ namespace Famvin.Controllers
             return View(branch);
         }
 
-        // POST: Branches/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdBranch,Code,Name")] Branch branch)
+        public ActionResult Edit(Branch branch)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +79,6 @@ namespace Famvin.Controllers
             return View(branch);
         }
 
-        // GET: Branches/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -99,7 +93,6 @@ namespace Famvin.Controllers
             return View(branch);
         }
 
-        // POST: Branches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

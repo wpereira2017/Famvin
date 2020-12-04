@@ -7,26 +7,82 @@
 
 <h2>Regions</h2>
 
-<p class="text-right">
-    @Html.ActionLink("New Region", "Create", null, new { @class = "btn btn-primary btn-large" })
-</p>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <p class="text-right">
+            @Html.ActionLink("New Region", "Create", null, new { @class = "btn btn-primary btn-large" })
+        </p>
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th></th>
+            </tr>
 
-<table class="table">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Name)</th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td class="text-right">
+                        @Html.ActionLink(" ", "Edit", new { id = item.IdRegion }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
+                        @Html.ActionLink(" ", "Details", new { id = item.IdRegion }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.IdRegion }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
+                    </td>
+                </tr>
+            }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-            <td>
-                @Html.ActionLink(" ", "Edit", new { id = item.IdRegion }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
-                @Html.ActionLink(" ", "Details", new { id = item.IdRegion }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
-                @Html.ActionLink(" ", "Delete", new { id = item.IdRegion }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
-            </td>
-        </tr>
-    }
+        </table>
+    </div>
 
-</table>
+    <div class="col-12 col-md-6">
+        <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $.getJSON("/Regions/GetRegionMembers", function (data) {
+
+                var final = [];
+
+                for (var i = 0; i < data.length; i++) {
+                    final.push({
+                        name: data[i].Region,
+                        y: data[i].TotalMembers
+                    })
+                }
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    credits: { enabled: false },
+                    title: { text: '<h5>Distribution Members by Regions</h5>' },
+                    tooltip: { pointFormat: '<span>{series.name}: <b>{point.y}</b></span>' },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<span>{point.name}: {point.percentage:.1f} %</span>'
+                                //style: { color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black' }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Members',
+                        colorByPoint: true,
+                        data: final
+                    }]
+                });
+            });
+        });
+    </script>
+
+}

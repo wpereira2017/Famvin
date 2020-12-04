@@ -20,7 +20,6 @@ namespace Famvin.Controllers
             return View(council.ToList().OrderBy(x => x.Region.Name).ThenBy( x => x.Name ));
         }
 
-        // GET: Councils/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,19 +34,15 @@ namespace Famvin.Controllers
             return View(council);
         }
 
-        // GET: Councils/Create
         public ActionResult Create()
         {
             ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name");
             return View();
         }
 
-        // POST: Councils/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCouncil,IdRegion,Name")] Council council)
+        public ActionResult Create(Council council)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +55,6 @@ namespace Famvin.Controllers
             return View(council);
         }
 
-        // GET: Councils/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,12 +70,9 @@ namespace Famvin.Controllers
             return View(council);
         }
 
-        // POST: Councils/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCouncil,IdRegion,Name")] Council council)
+        public ActionResult Edit(Council council)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +84,6 @@ namespace Famvin.Controllers
             return View(council);
         }
 
-        // GET: Councils/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,7 +98,6 @@ namespace Famvin.Controllers
             return View(council);
         }
 
-        // POST: Councils/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -127,5 +116,6 @@ namespace Famvin.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

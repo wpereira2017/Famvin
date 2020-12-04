@@ -31,17 +31,17 @@
 
         foreach (var item in group)
         {
-        <tr>
-            <td width="20%">@Html.DisplayFor(modelItem => item.Council.Name)</td>
-            <td width="30%">@Html.DisplayFor(modelItem => item.Name)</td>
-            <td width="10%">@Html.DisplayFor(modelItem => item.Branch.Code)</td>
-            <td width="15%">@Html.DisplayFor(modelItem => item.Position.Name)</td>
-            <td width="20%">
-                @Html.ActionLink(" ", "Edit", new { id = item.IdMember }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
-                @Html.ActionLink(" ", "Details", new { id = item.IdMember }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
-                @Html.ActionLink(" ", "Delete", new { id = item.IdMember }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
-            </td>
-        </tr>
+            <tr>
+                <td width="20%">@Html.DisplayFor(modelItem => item.Council.Name)</td>
+                <td width="30%">@Html.DisplayFor(modelItem => item.Name)</td>
+                <td width="10%">@Html.DisplayFor(modelItem => item.Branch.Code)</td>
+                <td width="15%">@Html.DisplayFor(modelItem => item.Position.Name)</td>
+                <td width="20%">
+                    @Html.ActionLink(" ", "Edit", new { id = item.IdMember }, new { @class = "btn btn-primary btn-large fa fa-edit", title = "Edit" })
+                    @Html.ActionLink(" ", "Details", new { id = item.IdMember }, new { @class = "btn btn-primary btn-large fa fa-list", title = "Details" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.IdMember }, new { @class = "btn btn-danger btn-large btn-elimina fa fa-trash", title = "Delete" })
+                </td>
+            </tr>
         }
     }
 

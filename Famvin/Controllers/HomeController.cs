@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Famvin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace Famvin.Controllers
 {
     public class HomeController : Controller
     {
+        FamVinEntities db = new FamVinEntities();
+
         public ActionResult Index()
         {
             return View();
@@ -26,5 +29,6 @@ namespace Famvin.Controllers
 
             return View();
         }
+
     }
 }

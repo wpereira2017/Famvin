@@ -20,7 +20,6 @@ namespace Famvin.Controllers
             return View(country.ToList().OrderBy(x => x.Region.Name ).ThenBy( x => x.Name));
         }
 
-        // GET: Countries/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,19 +34,15 @@ namespace Famvin.Controllers
             return View(country);
         }
 
-        // GET: Countries/Create
         public ActionResult Create()
         {
             ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name");
             return View();
         }
 
-        // POST: Countries/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCountry,IdRegion,Name")] Country country)
+        public ActionResult Create(Country country)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +55,6 @@ namespace Famvin.Controllers
             return View(country);
         }
 
-        // GET: Countries/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,12 +70,9 @@ namespace Famvin.Controllers
             return View(country);
         }
 
-        // POST: Countries/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCountry,IdRegion,Name")] Country country)
+        public ActionResult Edit(Country country)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +84,6 @@ namespace Famvin.Controllers
             return View(country);
         }
 
-        // GET: Countries/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,7 +98,6 @@ namespace Famvin.Controllers
             return View(country);
         }
 
-        // POST: Countries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -126,6 +115,26 @@ namespace Famvin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult GetCountryMembers()
+        {
+            var totals = from m in db.Member
+                         join c in db.Council on m.IdCouncil equals c.IdCouncil 
+                         join cc in db.Country on c.IdCountry equals cc.IdCountry
+                         group m by new
+                         {
+                             cc.IdCountry,
+                             cc.Name
+                         }
+                         into grouped
+                         select new
+                         {
+                             Country = grouped.Key.Name,
+                             TotalMembers = grouped.Count()
+                         };
+
+            return Json(totals, JsonRequestBehavior.AllowGet);
         }
     }
 }

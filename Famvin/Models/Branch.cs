@@ -11,14 +11,14 @@ namespace Famvin.Models
         {
             this.Member = new HashSet<Member>();
         }
-    
+
 
         public int IdBranch { get; set; }
         public string Code { get; set; }
 
         [Display(Name = "Branch")]
         public string Name { get; set; }
-    
+
         public virtual ICollection<Member> Member { get; set; }
     }
 }

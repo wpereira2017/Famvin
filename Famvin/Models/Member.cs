@@ -15,7 +15,7 @@ namespace Famvin.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-    
+
         public virtual Branch Branch { get; set; }
         public virtual Council Council { get; set; }
         public virtual Occupation Occupation { get; set; }
