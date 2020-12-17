@@ -49,7 +49,7 @@
     <script>
         $(document).ready(function () {
 
-            $.getJSON("/Countries/GetCountryMembers", function (data) {
+            $.getJSON("/Distribution/GetCountryMembers", function (data) {
 
                 var countries = [];
                 var totalxCountry = [];
@@ -64,23 +64,26 @@
                     chart: { type: 'area' },
                     title: { text: 'Members by Country' },
                     subtitle: { text: '' },
-                    xAxis: { categories: positions },
+                    xAxis: { categories: countries },
                     xAxis: {
                         categories: countries,
                         tickmarkPlacement: 'on',
                         title: { enabled: false }
                     },
                     yAxis: {
-                        title: { text: 'Billions' },
-                        labels: {
+                        title: { text: 'Members' },
+                        labels: { 
                             formatter: function () {
-                                return this.value / 1000;
+                                return this.value;
                             }
                         }
                     },
                     tooltip: {
                         split: true,
-                        valueSuffix: ' millions'
+                        formatter: function () {
+                            return 'Total members for <b>' + this.x +
+                                '</b> is <b>' + this.y + '</b>';
+                        }
                     },
                     plotOptions: {
                         area: {

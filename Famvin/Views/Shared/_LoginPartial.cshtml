@@ -6,6 +6,22 @@
         @Html.AntiForgeryToken()
 
         <ul class="navbar-nav navbar-right">
+            <li class="nav-item ">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Setup
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @Html.ActionLink("Branch", "Index", "Branches", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Council", "Index", "Councils", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Country", "Index", "Countries", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Member", "Index", "Members", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Occupation", "Index", "Occupations", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Position", "Index", "Positions", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Region", "Index", "Regions", null, new { @class = "dropdown-item" })
+                    </div>
+                </div>
+            </li>
             <li class="nav-item">
                 @Html.ActionLink("Hi " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
             </li>

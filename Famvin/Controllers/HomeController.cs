@@ -30,5 +30,10 @@ namespace Famvin.Controllers
             return View();
         }
 
+        public ActionResult Distribution()
+        {
+            return View();
+        }
+
     }
 }

@@ -10,6 +10,7 @@ using Famvin.Models;
 
 namespace Famvin.Controllers
 {
+    [Authorize]
     public class CountriesController : Controller
     {
         private FamVinEntities db = new FamVinEntities();
@@ -117,24 +118,5 @@ namespace Famvin.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult GetCountryMembers()
-        {
-            var totals = from m in db.Member
-                         join c in db.Council on m.IdCouncil equals c.IdCouncil 
-                         join cc in db.Country on c.IdCountry equals cc.IdCountry
-                         group m by new
-                         {
-                             cc.IdCountry,
-                             cc.Name
-                         }
-                         into grouped
-                         select new
-                         {
-                             Country = grouped.Key.Name,
-                             TotalMembers = grouped.Count()
-                         };
-
-            return Json(totals, JsonRequestBehavior.AllowGet);
-        }
     }
 }

@@ -11,6 +11,13 @@
     @Html.ActionLink("New Member", "Create", null, new { @class = "btn btn-primary btn-large" })
 </p>
 
+@using( Html.BeginForm("Search", "Members", FormMethod.Get))
+{
+    <p class="text-center">
+        @Html.TextBox("searching")<input type="submit" value="Search"/>
+    </p>
+}
+
 <table class="table">
 
     @foreach (var group in Model.GroupBy(x => x.Region.Name))

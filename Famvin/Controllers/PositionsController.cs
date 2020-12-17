@@ -10,6 +10,7 @@ using Famvin.Models;
 
 namespace Famvin.Controllers
 {
+    [Authorize]
     public class PositionsController : Controller
     {
         private FamVinEntities db = new FamVinEntities();
@@ -112,23 +113,5 @@ namespace Famvin.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult GetPositionMembers()
-        {
-            var totals = from m in db.Member
-                         join p in db.Position on m.IdPosition1 equals p.IdPosition
-                         group m by new
-                         {
-                             p.IdPosition,
-                             p.Name
-                         }
-                         into grouped
-                         select new
-                         {
-                             Position = grouped.Key.Name,
-                             TotalMembers = grouped.Count()
-                         };
-
-            return Json(totals, JsonRequestBehavior.AllowGet);
-        }
     }
 }

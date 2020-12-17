@@ -10,6 +10,7 @@ using Famvin.Models;
 
 namespace Famvin.Controllers
 {
+    [Authorize]
     public class OccupationsController : Controller
     {
         private FamVinEntities db = new FamVinEntities();

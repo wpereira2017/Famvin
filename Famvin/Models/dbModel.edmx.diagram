@@ -7,7 +7,7 @@
       <Diagram DiagramId="5f1e8df5a7434b7baefcc75a5e8c5d6f" Name="Diagram1">
         <EntityTypeShape EntityType="FamVinModel.Branch" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FamVinModel.Council" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FamVinModel.Country" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FamVinModel.Country" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FamVinModel.Member" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FamVinModel.Occupation" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="FamVinModel.Position" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
@@ -19,6 +19,7 @@
         <AssociationConnector Association="FamVinModel.FK_Member_Occupation" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Member_Position" ManuallyRouted="false" />
         <AssociationConnector Association="FamVinModel.FK_Member_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="FamVinModel.FK_Council_Country" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

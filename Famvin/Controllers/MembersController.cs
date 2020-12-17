@@ -10,6 +10,7 @@ using Famvin.Models;
 
 namespace Famvin.Controllers
 {
+    [Authorize]
     public class MembersController : Controller
     {
         private FamVinEntities db = new FamVinEntities();
@@ -17,72 +18,126 @@ namespace Famvin.Controllers
         public ActionResult Index()
         {
             var member = db.Member.Include(m => m.Branch).Include(m => m.Council).Include(m => m.Occupation).Include(m => m.Position).Include(m => m.Region);
-            return View(member.ToList().OrderBy(x => x.Council.Name).ThenBy( x => x.Name));
+            return View(member.ToList().OrderBy(x => x.Name).ThenBy(x => x.Council.Name));
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Search(string searching)
         {
-            return View();
+            var members = db.Member.Where(x => x.Name.Contains(searching) || searching == null).Include(m => m.Branch).Include(m => m.Council).Include(m => m.Occupation).Include(m => m.Position).Include(m => m.Region);
+            return View("Index", members.ToList());
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = db.Member.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
         }
 
         public ActionResult Create()
         {
+            ViewBag.IdBranch = new SelectList(db.Branch, "IdBranch", "Code");
+            ViewBag.IdCouncil = new SelectList(db.Council, "IdCouncil", "Name");
+            ViewBag.IdOccupation = new SelectList(db.Occupation, "IdOccupation", "Name");
+            ViewBag.IdPosition1 = new SelectList(db.Position, "IdPosition", "Name");
+            ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name");
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Member member)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                db.Member.Add(member);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.IdBranch = new SelectList(db.Branch, "IdBranch", "Code", member.IdBranch);
+            ViewBag.IdCouncil = new SelectList(db.Council, "IdCouncil", "Name", member.IdCouncil);
+            ViewBag.IdOccupation = new SelectList(db.Occupation, "IdOccupation", "Name", member.IdOccupation);
+            ViewBag.IdPosition1 = new SelectList(db.Position, "IdPosition", "Name", member.IdPosition1);
+            ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name", member.IdRegion);
+            return View(member);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = db.Member.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.IdBranch = new SelectList(db.Branch, "IdBranch", "Code", member.IdBranch);
+            ViewBag.IdCouncil = new SelectList(db.Council, "IdCouncil", "Name", member.IdCouncil);
+            ViewBag.IdOccupation = new SelectList(db.Occupation, "IdOccupation", "Name", member.IdOccupation);
+            ViewBag.IdPosition1 = new SelectList(db.Position, "IdPosition", "Name", member.IdPosition1);
+            ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name", member.IdRegion);
+            return View(member);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Member member)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(member).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.IdBranch = new SelectList(db.Branch, "IdBranch", "Code", member.IdBranch);
+            ViewBag.IdCouncil = new SelectList(db.Council, "IdCouncil", "Name", member.IdCouncil);
+            ViewBag.IdOccupation = new SelectList(db.Occupation, "IdOccupation", "Name", member.IdOccupation);
+            ViewBag.IdPosition1 = new SelectList(db.Position, "IdPosition", "Name", member.IdPosition1);
+            ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name", member.IdRegion);
+            return View(member);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = db.Member.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
         }
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Member member = db.Member.Find(id);
+            db.Member.Remove(member);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                return View();
+                db.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }

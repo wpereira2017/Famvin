@@ -10,6 +10,7 @@ using Famvin.Models;
 
 namespace Famvin.Controllers
 {
+    [Authorize]
     public class CouncilsController : Controller
     {
         private FamVinEntities db = new FamVinEntities();
@@ -26,17 +27,21 @@ namespace Famvin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Council council = db.Council.Find(id);
+            
             if (council == null)
             {
                 return HttpNotFound();
             }
+            
             return View(council);
         }
 
         public ActionResult Create()
         {
             ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name");
+            ViewBag.IdCountry = new SelectList(db.Country, "IdCountry", "Name");
             return View();
         }
 
@@ -52,6 +57,7 @@ namespace Famvin.Controllers
             }
 
             ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name", council.IdRegion);
+            ViewBag.IdCountry = new SelectList(db.Country, "IdCountry", "Name", council.IdCountry);
             return View(council);
         }
 
@@ -61,12 +67,17 @@ namespace Famvin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Council council = db.Council.Find(id);
+            
             if (council == null)
             {
                 return HttpNotFound();
             }
+            
             ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name", council.IdRegion);
+            ViewBag.IdCountry = new SelectList(db.Country, "IdCountry", "Name", council.IdCountry);
+
             return View(council);
         }
 
@@ -80,7 +91,10 @@ namespace Famvin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.IdRegion = new SelectList(db.Region, "IdRegion", "Name", council.IdRegion);
+            ViewBag.IdCountry = new SelectList(db.Country, "IdCountry", "Name", council.IdCountry);
+
             return View(council);
         }
 
@@ -90,11 +104,14 @@ namespace Famvin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Council council = db.Council.Find(id);
+
             if (council == null)
             {
                 return HttpNotFound();
             }
+
             return View(council);
         }
 

@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Distribution";
+}
+
+<div class="row">
+    <div class="col-12 col-lg-6" id="container"></div>
+    <div class="col-12 col-lg-6" id="container1"></div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-6" id="container2"></div>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $.getJSON("/Distribution/GetCountryMembers", function (data) {
+
+                var countries = [];
+                var totalxCountry = [];
+
+                for (var i = 0; i < data.length; i++) {
+
+                    countries.push(data[i].Country);
+                    totalxCountry.push({ y: data[i].TotalMembers });
+                }
+
+                Highcharts.chart('container', {
+                    chart: { type: 'area' },
+                    title: { text: 'Members by Country' },
+                    subtitle: { text: '' },
+                    credits: { enabled: false },
+                    xAxis: { categories: countries },
+                    xAxis: {
+                        categories: countries,
+                        tickmarkPlacement: 'on',
+                        title: { enabled: false }
+                    },
+                    yAxis: {
+                        title: { text: 'Members' },
+                        labels: {
+                            formatter: function () {
+                                return this.value;
+                            }
+                        }
+                    },
+                    tooltip: {
+                        split: true,
+                        formatter: function () {
+                            return 'Total members for <b>' + this.x +
+                                '</b> is <b>' + this.y + '</b>';
+                        }
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'normal',
+                            lineColor: '#666666',
+                            lineWidth: 1,
+                            marker: {
+                                lineWidth: 1,
+                                lineColor: '#666666'
+                            }
+                        }
+                    },
+                    series: [{ data: totalxCountry }]
+                });
+            });
+
+            $.getJSON("/Distribution/GetRegionMembers", function (data) {
+
+                var final = [];
+
+                for (var i = 0; i < data.length; i++) {
+                    final.push({
+                        name: data[i].Region,
+                        y: data[i].TotalMembers
+                    })
+                }
+
+                Highcharts.chart('container1', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    credits: { enabled: false },
+                    title: { text: '<h5>Distribution Members by Regions</h5>' },
+                    tooltip: { pointFormat: '<span>{series.name}: <b>{point.y}</b></span>' },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<span>{point.name}: {point.percentage:.1f} %</span>'
+                                //style: { color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black' }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Members',
+                        colorByPoint: true,
+                        data: final
+                    }]
+                });
+            });
+
+            $.getJSON("/Distribution/GetPositionMembers", function (data) {
+
+                var final = [];
+                var positions = [];
+                var totalxPosition = [];
+
+                for (var i = 0; i < data.length; i++) {
+
+                    final.push({
+                        name: data[i].Position,
+                        y: data[i].TotalMembers
+                    });
+
+                    positions.push(data[i].Position);
+                    totalxPosition.push({ y: data[i].TotalMembers });
+                }
+
+                Highcharts.chart('container2', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    credits: { enabled: false },
+                    title: { text: '<h5>Distribution Members by Positions</h5>' },
+                    tooltip: { pointFormat: '<span>{series.name}: <b>{point.y}</b></span>' },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<span>{point.name}: {point.percentage:.1f} %</span>'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Persons',
+                        colorByPoint: true,
+                        data: final
+                    }]
+                });
+
+                const chart = Highcharts.chart('container1', {
+                    chart: { type: 'column' },
+                    title: { text: '' },
+                    credits: { enabled: false },
+                    xAxis: { categories: positions },
+                    yAxis: {
+                        min: 0,
+                        title: { text: '# Members' }
+                    },
+                    legend: { enabled: false },
+                    plotOptions: {
+                        column: {
+                            allowPointSelect: true,
+                            dataLabels: {
+                                enabled: true,
+                                format: '<span>{point.y}</span>'
+                            }
+                        },
+                        series: { allowPointSelect: true }
+                    },
+                    series: [{ data: totalxPosition }]
+                });
+            });
+        });
+    </script>
+
+}
+

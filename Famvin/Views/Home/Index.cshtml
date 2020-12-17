@@ -6,148 +6,304 @@
     <div class="col-12 col-lg-6" id="container"></div>
     <div class="col-12 col-lg-6" id="container1"></div>
 </div>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <div class="card h-100">
-            <h4 class="card-header">Responsabilities</h4>
-            <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+
+<!-- Image Showcases -->
+<section class="showcase my-5">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-lg-6 order-lg-2 my-auto" id="container2"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h3>Members by Position</h3>
+                <p class="lead mb-0">Vicentians membes clasified by their position around Latinamerica.</p>
             </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary">More...</a>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-6 my-auto" id="container4"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h3>Members by Country</h3>
+                <p class="lead mb-0">Vicentians membes distributed around countries in Latinamerica</p>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <h4 class="card-header">Regions</h4>
-            <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+</section>
+
+<!-- Icons Grid -->
+<section class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex">
+                        <i class="icon-screen-desktop m-auto text-primary"></i>
+                    </div>
+                    <h3>Famvin</h3>
+                    <p class="lead mb-0">Vicentian Family is distributed around differente countries on the world.</p>
+                </div>
             </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary">More...</a>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex">
+                        <i class="icon-layers m-auto text-primary"></i>
+                    </div>
+                    <h3>Members Distribution</h3>
+                    <p class="lead mb-0"> Take a look for distribution!</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex">
+                        <i class="icon-check m-auto text-primary"></i>
+                    </div>
+                    <h3>Another option</h3>
+                    <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <h4 class="card-header">Countries</h4>
-            <div class="card-body">
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary">More...</a>
-            </div>
-        </div>
-    </div>
-</div>
+</section>
+
+
 
 @section Scripts{
     <script>
 
-    // Prepare demo data
-    // Data is joined to map using value of 'hc-key' property by default.
-    // See API docs for 'joinBy' for more info on linking data and map.
-    var data = [
-        ['gl', 0],
-        ['lc', 1],
-        ['um', 2],
-        ['us', 3],
-        ['vi', 4],
-        ['ca', 5],
-        ['cu', 6],
-        ['kn', 7],
-        ['ni', 8],
-        ['gd', 9],
-        ['dm', 10],
-        ['ag', 11],
-        ['tt', 12],
-        ['sw', 13],
-        ['bb', 14],
-        ['jm', 15],
-        ['bu', 16],
-        ['bs', 17],
-        ['vc', 18],
-        ['ht', 19],
-        ['sv', 20],
-        ['hn', 21],
-        ['do', 22],
-        ['mx', 23],
-        ['bz', 24],
-        ['gt', 25],
-        ['cr', 26],
-        ['pr', 27],
-        ['pa', 28]
-    ];
+        // Prepare demo data
+        // Data is joined to map using value of 'hc-key' property by default.
+        // See API docs for 'joinBy' for more info on linking data and map.
+        var data = [
+            ['lc', 1],
+            ['um', 2],
+            ['vi', 4],
+            ['cu', 6],
+            ['kn', 7],
+            ['ni', 8],
+            ['gd', 9],
+            ['dm', 10],
+            ['ag', 11],
+            ['tt', 12],
+            ['sw', 13],
+            ['bb', 14],
+            ['jm', 15],
+            ['bu', 16],
+            ['bs', 17],
+            ['vc', 18],
+            ['ht', 19],
+            ['sv', 20],
+            ['hn', 21],
+            ['do', 22],
+            ['mx', 23],
+            ['bz', 24],
+            ['gt', 25],
+            ['cr', 26],
+            ['pr', 27],
+            ['pa', 28]
+        ];
 
-    // Create the chart
-    Highcharts.mapChart('container', {
-        chart: { map: 'custom/north-america' },
-        title: { text: '' },
-        credits: { enabled: false },
-        subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/north-america.js">North/Central America</a>' },
-        mapNavigation: {
-            enabled: true,
-            buttonOptions: { verticalAlign: 'bottom' }
-        },
-        colorAxis: { min: 0 },
-        series: [{
-            data: data,
-            name: '#Members',
-            states: {
-                hover: { color: '#BADA55' }
-            },
-            dataLabels: {
+        // Create the chart
+        Highcharts.mapChart('container', {
+            chart: { map: 'custom/north-america' },
+            title: { text: '' },
+            credits: { enabled: false },
+            subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/north-america.js">North/Central America</a>' },
+            mapNavigation: {
                 enabled: true,
-                format: '{point.name}'
-            }
-        }]
-    });
-
-    // Prepare demo data
-    // Data is joined to map using value of 'hc-key' property by default.
-    // See API docs for 'joinBy' for more info on linking data and map.
-    var data1 = [
-        ['br', 0],
-        ['ec', 1],
-        ['ve', 2],
-        ['cl', 3],
-        ['ar', 4],
-        ['pe', 5],
-        ['uy', 6],
-        ['py', 7],
-        ['bo', 8],
-        ['sr', 9],
-        ['gy', 10],
-        ['gb', 11],
-        ['co', 12]
-    ];
-
-    // Create the chart
-    Highcharts.mapChart('container1', {
-        chart: { map: 'custom/south-america'  },
-        credits: { enabled: false },
-        title: { text: '' },
-        subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/south-america.js">South America</a>' },
-        mapNavigation: {
-            enabled: true,
-            buttonOptions: { verticalAlign: 'bottom' }
-        },
-        colorAxis: { min: 0 },
-        series: [{
-            data: data1,
-            name: '#Members',
-            states: {
-                hover: { color: '#BADA55' }
+                buttonOptions: { verticalAlign: 'top' }
             },
-            dataLabels: {
-                enabled: true,
-                format: '{point.name}'
-            }
-        }]
-    });
+            colorAxis: { min: 0 },
+            series: [{
+                data: data,
+                name: '#Members',
+                states: {
+                    hover: { color: '#BADA55' }
+                },
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }]
+        });
 
-</script>
+        // Prepare demo data
+        // Data is joined to map using value of 'hc-key' property by default.
+        // See API docs for 'joinBy' for more info on linking data and map.
+        var data1 = [
+            ['br', 0],
+            ['ec', 1],
+            ['ve', 2],
+            ['cl', 3],
+            ['ar', 4],
+            ['pe', 5],
+            ['uy', 6],
+            ['py', 7],
+            ['bo', 8],
+            ['sr', 9],
+            ['gy', 10],
+            ['gb', 11],
+            ['co', 12]
+        ];
+
+        // Create the chart
+        Highcharts.mapChart('container1', {
+            chart: { map: 'custom/south-america' },
+            credits: { enabled: false },
+            title: { text: '' },
+            subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/south-america.js">South America</a>' },
+            mapNavigation: {
+                enabled: false,
+                buttonOptions: { verticalAlign: 'top' }
+            },
+            colorAxis: { min: 0 },
+            series: [{
+                data: data1,
+                name: '#Members',
+                states: {
+                    hover: { color: '#BADA55' }
+                },
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }]
+        });
+
+        $.getJSON("/Distribution/GetPositionMembers", function (data) {
+
+            var final = [];
+            var positions = [];
+            var totalxPosition = [];
+
+            for (var i = 0; i < data.length; i++) {
+
+                final.push({
+                    name: data[i].Position,
+                    y: data[i].TotalMembers
+                });
+
+                positions.push(data[i].Position);
+                totalxPosition.push({ y: data[i].TotalMembers });
+            }
+
+            const chart = Highcharts.chart('container2', {
+                chart: { type: 'column' },
+                title: { text: '' },
+                credits: { enabled: false },
+                xAxis: { categories: positions },
+                yAxis: {
+                    min: 0,
+                    title: { text: '# Members' }
+                },
+                legend: { enabled: false },
+                exporting: { enabled: false },
+                plotOptions: {
+                    column: {
+                        allowPointSelect: true,
+                        dataLabels: {
+                            enabled: true,
+                            format: '<span>{point.y}</span>'
+                        }
+                    },
+                    series: { allowPointSelect: true }
+                },
+                series: [{ data: totalxPosition }]
+            });
+        });
+
+        $.getJSON("/Distribution/GetPositionMembers", function (data) {
+
+            var final = [];
+            var positions = [];
+            var totalxPosition = [];
+
+            for (var i = 0; i < data.length; i++) {
+
+                final.push({
+                    name: data[i].Position,
+                    y: data[i].TotalMembers
+                });
+
+                positions.push(data[i].Position);
+                totalxPosition.push({ y: data[i].TotalMembers });
+            }
+
+            const chart = Highcharts.chart('container2', {
+                chart: { type: 'column' },
+                title: { text: '' },
+                credits: { enabled: false },
+                xAxis: { categories: positions },
+                yAxis: {
+                    min: 0,
+                    title: { text: '# Members' }
+                },
+                legend: { enabled: false },
+                exporting: { enabled: false },
+                plotOptions: {
+                    column: {
+                        allowPointSelect: true,
+                        dataLabels: {
+                            enabled: true,
+                            format: '<span>{point.y}</span>'
+                        }
+                    },
+                    series: { allowPointSelect: true }
+                },
+                series: [{ data: totalxPosition }]
+            });
+        });
+
+        $.getJSON("/Distribution/GetCountryMembers", function (data) {
+
+            var countries = [];
+            var totalxCountry = [];
+
+            for (var i = 0; i < data.length; i++) {
+
+                countries.push(data[i].Country);
+                totalxCountry.push({ y: data[i].TotalMembers });
+            }
+
+            Highcharts.chart('container4', {
+                chart: { type: 'area' },
+                title: { text: '' },
+                subtitle: { text: '' },
+                credits: { enabled: false },
+                xAxis: { categories: countries },
+                xAxis: {
+                    categories: countries,
+                    tickmarkPlacement: 'on',
+                    title: { enabled: false }
+                },
+                yAxis: {
+                    title: { text: 'Members' },
+                    labels: {
+                        formatter: function () {
+                            return this.value;
+                        }
+                    }
+                },
+                tooltip: {
+                    split: true,
+                    formatter: function () {
+                        return 'Total members for <b>' + this.x +
+                            '</b> is <b>' + this.y + '</b>';
+                    }
+                },
+                exporting: { enabled: false },
+                plotOptions: {
+                    area: {
+                        stacking: 'normal',
+                        lineColor: '#666666',
+                        lineWidth: 1,
+                        marker: {
+                            lineWidth: 1,
+                            lineColor: '#666666'
+                        }
+                    }
+                },
+                series: [{ data: totalxCountry }]
+            });
+        });
+
+
+    </script>
 }
 

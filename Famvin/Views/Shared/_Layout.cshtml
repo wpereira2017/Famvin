@@ -12,7 +12,13 @@
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/mapdata/custom/north-america.js"></script>
     <script src="https://code.highcharts.com/mapdata/custom/south-america.js"></script>
-    @*<script src="https://code.highcharts.com/highcharts.js"></script>*@
+
+    <!-- Custom fonts for this template -->
+    <link href="~/Content/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="../../Content/landing-page.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -20,9 +26,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Famvin</a>
         @*<a href='@Url.Action("Index", "Home", new { @class = "navbar-brand" })'>
-            <img src="~/img/Logo_Famvin.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            Famvin
-        </a>*@
+                <img src="~/img/Logo_Famvin.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                Famvin
+            </a>*@
         @*@Html.ActionLink("Logo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,22 +39,6 @@
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Distribution", "Distribution", "Home", null, new { @class = "nav-link" })</li>
-                <li class="nav-item ">
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Setup
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            @Html.ActionLink("Branch", "Index", "Branches", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Council", "Index", "Councils", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Country", "Index", "Countries", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Member", "Index", "Members", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Occupation", "Index", "Occupations", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Position", "Index", "Positions", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Region", "Index", "Regions", null, new { @class = "dropdown-item" })
-                        </div>
-                    </div>
-                </li>
             </ul>
             @*<span class="navbar-text"></span>*@
             @Html.Partial("_LoginPartial")
@@ -58,11 +48,11 @@
     <header class="jumbotron" style="padding: 32px 32px 0px 32px">
         <div class="container">
             <div class="row row-header">
-                <div class="col-12 col-sm-8">
+                <div class="col-12 col-sm-7">
                     <h1>Famvin</h1>
                     <p>The Vincentian Family is a movement with more than 160 institutions and 4,000,000 members around the world, who follow Jesus Christ serving the poor, following the example of Saint Vincent of Paul, Saint Louise Marillac and many other believers, they have enriched the Vincentian charism through over the last 4 centuries.</p>
                 </div>
-                <div class="col-12 col-sm-4" style="margin-bottom: 20px;">
+                <div class="col-12 col-sm-4 offset-1" style="margin-bottom: 20px;">
                     <img src="~/img/Logo_Famvin.png" class="img-fluid" height="240" width="320">
                 </div>
             </div>
@@ -71,7 +61,9 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+    </div>
+
+    <div class="container mt-5">
         <footer>
             <p>&copy; @DateTime.Now.Year - Comisión de Información de la Familia Vicenciana</p>
         </footer>
@@ -82,3 +74,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
