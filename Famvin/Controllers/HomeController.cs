@@ -35,5 +35,26 @@ namespace Famvin.Controllers
             return View();
         }
 
+        public ActionResult GetCountryMembers()
+        {
+            var totals = from m in db.Member
+                         join c in db.Council on m.IdCouncil equals c.IdCouncil
+                         join cc in db.Country on c.IdCountry equals cc.IdCountry
+                         group m by new
+                         {
+                             cc.IdCountry,
+                             cc.Name, 
+                             cc.HighMapCode
+                         }
+                         into grouped
+                         select new
+                         {
+                             Country = grouped.Key.HighMapCode,
+                             TotalMembers = grouped.Count()
+                         };
+
+            return Json(totals, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

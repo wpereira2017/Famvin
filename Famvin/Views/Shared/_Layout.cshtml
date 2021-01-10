@@ -24,7 +24,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Famvin</a>
+        <a class="navbar-brand" href="#">FV</a>
         @*<a href='@Url.Action("Index", "Home", new { @class = "navbar-brand" })'>
                 <img src="~/img/Logo_Famvin.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                 Famvin
@@ -39,6 +39,22 @@
                 <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Distribution", "Distribution", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item ">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Setup
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.ActionLink("Branch", "Index", "Branches", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Council", "Index", "Councils", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Country", "Index", "Countries", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Member", "Index", "Members", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Occupation", "Index", "Occupations", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Position", "Index", "Positions", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Region", "Index", "Regions", null, new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </li>
             </ul>
             @*<span class="navbar-text"></span>*@
             @Html.Partial("_LoginPartial")

@@ -67,103 +67,65 @@
 @section Scripts{
     <script>
 
-        // Prepare demo data
-        // Data is joined to map using value of 'hc-key' property by default.
-        // See API docs for 'joinBy' for more info on linking data and map.
-        var data = [
-            ['lc', 1],
-            ['um', 2],
-            ['vi', 4],
-            ['cu', 6],
-            ['kn', 7],
-            ['ni', 8],
-            ['gd', 9],
-            ['dm', 10],
-            ['ag', 11],
-            ['tt', 12],
-            ['sw', 13],
-            ['bb', 14],
-            ['jm', 15],
-            ['bu', 16],
-            ['bs', 17],
-            ['vc', 18],
-            ['ht', 19],
-            ['sv', 20],
-            ['hn', 21],
-            ['do', 22],
-            ['mx', 23],
-            ['bz', 24],
-            ['gt', 25],
-            ['cr', 26],
-            ['pr', 27],
-            ['pa', 28]
-        ];
+        $(document).ready(function () {
 
-        // Create the chart
-        Highcharts.mapChart('container', {
-            chart: { map: 'custom/north-america' },
-            title: { text: '' },
-            credits: { enabled: false },
-            subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/north-america.js">North/Central America</a>' },
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: { verticalAlign: 'top' }
-            },
-            colorAxis: { min: 0 },
-            series: [{
-                data: data,
-                name: '#Members',
-                states: {
-                    hover: { color: '#BADA55' }
-                },
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}'
-                }
-            }]
-        });
+            $.getJSON("/Home/GetCountryMembers", function (data) {
+                Highcharts.mapChart('container', {
+                    chart: { map: 'custom/north-america' },
+                    title: { text: '' },
+                    credits: { enabled: false },
+                    subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/north-america.js">North/Central America</a>' },
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: { verticalAlign: 'top' }
+                    },
+                    colorAxis: { min: 0 },
+                    series: [{
+                        data: data,
+                        joinBy: ['hc-key', 'Country'],
+                        name: '#Members',
+                        states: {
+                            hover: { color: '#BADA55' }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        },
+                        tooltip: {
+                            pointFormat: '{point.name}: {point.TotalMembers} members'
+                        }
+                    }]
+                });
+            });
 
-        // Prepare demo data
-        // Data is joined to map using value of 'hc-key' property by default.
-        // See API docs for 'joinBy' for more info on linking data and map.
-        var data1 = [
-            ['br', 0],
-            ['ec', 1],
-            ['ve', 2],
-            ['cl', 3],
-            ['ar', 4],
-            ['pe', 5],
-            ['uy', 6],
-            ['py', 7],
-            ['bo', 8],
-            ['sr', 9],
-            ['gy', 10],
-            ['gb', 11],
-            ['co', 12]
-        ];
-
-        // Create the chart
-        Highcharts.mapChart('container1', {
-            chart: { map: 'custom/south-america' },
-            credits: { enabled: false },
-            title: { text: '' },
-            subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/south-america.js">South America</a>' },
-            mapNavigation: {
-                enabled: false,
-                buttonOptions: { verticalAlign: 'top' }
-            },
-            colorAxis: { min: 0 },
-            series: [{
-                data: data1,
-                name: '#Members',
-                states: {
-                    hover: { color: '#BADA55' }
-                },
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.name}'
-                }
-            }]
+            $.getJSON("/Home/GetCountryMembers", function (data) {
+                Highcharts.mapChart('container1', {
+                    chart: { map: 'custom/south-america' },
+                    title: { text: '' },
+                    credits: { enabled: false },
+                    subtitle: { text: '<a href="http://code.highcharts.com/mapdata/custom/south-america.js">South America</a>' },
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: { verticalAlign: 'top' }
+                    },
+                    colorAxis: { min: 0 },
+                    series: [{
+                        data: data,
+                        joinBy: ['hc-key', 'Country'],
+                        name: '#Members',
+                        states: {
+                            hover: { color: '#BADA55' }
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        },
+                        tooltip: {
+                            pointFormat: '{point.name}: {point.TotalMembers} members'
+                        }
+                    }]
+                });
+            });
         });
 
         $.getJSON("/Distribution/GetPositionMembers", function (data) {

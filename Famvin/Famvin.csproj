@@ -961,6 +961,7 @@
     <Content Include="Scripts\highcharts\7.1.2\css\highcharts.scss" />
     <Content Include="Scripts\highcharts\7.1.2\css\annotations\popup.scss" />
     <Content Include="Content\simple-line-icons\fonts\Simple-Line-Icons.woff2" />
+    <None Include="Properties\PublishProfiles\fv - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1132,6 +1133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\Distribution\" />
     <Folder Include="wwwroot\is-cache\0\0\C\1\C\6\D\9\D\F\C\" />
     <Folder Include="wwwroot\is-cache\0\6\1\F\6\8\D\5\7\F\5\" />

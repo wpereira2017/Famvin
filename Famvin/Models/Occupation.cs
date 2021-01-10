@@ -10,12 +10,12 @@ namespace Famvin.Models
         {
             Member = new HashSet<Member>();
         }
-    
+
         public int IdOccupation { get; set; }
 
         [Display(Name = "Occupation")]
         public string Name { get; set; }
-    
+
         public virtual ICollection<Member> Member { get; set; }
     }
 }

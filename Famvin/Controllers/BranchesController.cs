@@ -10,7 +10,6 @@ using Famvin.Models;
 
 namespace Famvin.Controllers
 {
-    [Authorize]
     public class BranchesController : Controller
     {
         private FamVinEntities db = new FamVinEntities();

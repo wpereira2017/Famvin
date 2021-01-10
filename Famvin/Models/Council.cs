@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Famvin.Models
 {
-    
+
     public partial class Council
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

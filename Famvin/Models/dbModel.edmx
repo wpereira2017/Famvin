@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FamVinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FamVinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="IdBranch" />
@@ -29,6 +29,7 @@
           <Property Name="IdCountry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdRegion" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HighMapCode" Type="nchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -237,6 +238,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Region" Relationship="Self.FK_Country_Region" FromRole="Country" ToRole="Region" />
           <NavigationProperty Name="Council" Relationship="Self.FK_Council_Country" FromRole="Country" ToRole="Council" />
+          <Property Name="HighMapCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -449,6 +451,7 @@
           <EntitySetMapping Name="Country">
             <EntityTypeMapping TypeName="FamVinModel.Country">
               <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="HighMapCode" ColumnName="HighMapCode" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
                 <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

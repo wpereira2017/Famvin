@@ -10,7 +10,7 @@ using Famvin.Models;
 
 namespace Famvin.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CountriesController : Controller
     {
         private FamVinEntities db = new FamVinEntities();
